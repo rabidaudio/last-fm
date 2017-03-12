@@ -399,6 +399,126 @@ class LastFM {
       cb(null, Object.assign(this._parsePage(data), { results }))
     })
   }
+
+  /**
+   * USER API
+   */
+
+  userGetArtistTracks (opts, cb) {
+    if (!opts.user || !opts.artist) {
+      return cb(new Error('Missing required params: user, artist'))
+    }
+    opts.method = 'user.getArtistTracks'
+    this._sendRequest(opts, 'artisttracks', cb)
+  }
+
+  userGetFriends (opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getFriends'
+    this._sendRequest(opts, 'friends', cb)
+  }
+
+  userGetInfo (opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getInfo'
+    this._sendRequest(opts, 'user', cb)
+  }
+
+  userGetLovedTracks (opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getLovedTracks'
+    this._sendRequest(opts, 'lovedtracks', cb)
+  }
+
+  userGetPersonalTags (opts, cb) {
+    if (!opts.user || !opts.tag || !opts.taggingtype) {
+      return cb(new Error('Missing required params: user tag'))
+    }
+    const validTypes = ['artist', 'album', 'track']
+    if (validTypes.indexOf(opts.taggingtype) === -1) {
+      return cb(new Error('Valid tagging types: ' + validTypes))
+    }
+    opts.method = 'user.getPersonalTags'
+    this._sendRequest(opts, 'taggings', cb)
+  }
+
+  userGetRecentTracks (opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getRecentTracks'
+    this._sendRequest(opts, 'recenttracks', cb)
+  }
+
+  userGetTopAlbums (opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getTopAlbums'
+    this._sendRequest(opts, 'topalbums', cb)
+  }
+
+  userGetTopArtists (opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getTopArtists'
+    this._sendRequest(opts, 'topartists', cb)
+  }
+
+  userGetTopTags (opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getTopTags'
+    this._sendRequest(opts, 'toptags', cb)
+  }
+
+  userGetTopTracks (opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getTopTracks'
+    this._sendRequest(opts, 'toptracks', cb)
+  }
+
+  userGetWeeklyAlbumChart (opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getWeeklyAlbumChart'
+    this._sendRequest(opts, 'weeklyalbumchart', cb)
+  }
+
+  userGetWeeklyArtistChart (opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getWeeklyArtistChart'
+    this._sendRequest(opts, 'weeklyartistchart', cb)
+  }
+
+  userGetWeeklyChartList(opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getWeeklyChartList'
+    this._sendRequest(opts, 'weeklychartlist', cb)
+  }
+
+  userGetWeeklyTrackChart (opts, cb) {
+    if (!opts.user) {
+      return cb(new Error('Missing required params: user'))
+    }
+    opts.method = 'user.getWeeklyTrackChart'
+    this._sendRequest(opts, 'weeklytrackchart', cb)
+  }
 }
 
 module.exports = LastFM
